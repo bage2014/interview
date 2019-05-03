@@ -1,7 +1,7 @@
 # Java 面试知识点总结
 Java面试知识点总结，会不断进行完善，1个月内将下面的列的提纲补充完整，同时包含部分答案，仅供参考使用
 
-## Java 基础 ##
+## [Java 基础](https://github.com/bage2014/interview/blob/master/README-Java.md) ##
 - 面向对象理论基础
 - Java集合 list、map、set
 - 常用类 Integer、String、StringBuilder
