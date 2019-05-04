@@ -54,6 +54,29 @@ github地址[https://github.com/bage2014/interview](https://github.com/bage2014/
 		5. IndexOutOfBoundsException - 下标越界异常
 		6. NumberFormatException - 数字格式异常
 
+### String、StringBuilder、StringBuffer ###
+- String
+	1. 字符串操作类，final类
+	2. 需要了解其常用方法和简单实现
+- StringBuilder
+	1. 字符串拼接类
+	2. 非线程安全
+- StringBuffer
+	1. 字符串拼接类
+	2. 线程安全，实现方式为在方法上加上synchronized关键字
+
+### 重载和重写 ###
+- 重载，方法名一样，但是参数个数或参数类型不一样，比如print(int a)和print(String str)
+- 重写，子类重写父类中定义的方法，比如父类Parent类中存在print(int a)方法，但是子类重新对其进行了实现
+
+### 抽象类和接口有什么区别 ###
+- 抽象类
+	1. Abstract 关键字修饰的class
+	2. 可以存在方法默认的实现
+- 接口
+1. interface 关键字修饰
+2. jdk8及之后版本，可以存在方法默认实现，jdk8之前必须为空方法，仅为方法声明
+
 ## Java集合 list、map、set ##
 
 ### HashMap ###
