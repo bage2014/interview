@@ -28,7 +28,7 @@ Java面试知识点总结，会不断进行完善，1个月内将下面的列的
 - 回溯
 - 动态规划
 
-## 多线程 ##
+## [多线程](https://github.com/bage2014/interview/blob/master/README-MulThread.md) ##
 - 线程创建、执行、状态转化
 - AtomicInteger和AtomicXXX
 - CountdownLatch、CyclicBarrier
