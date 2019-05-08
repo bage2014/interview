@@ -1,6 +1,7 @@
 # Java 多线程 #
 
-github地址 [https://github.com/bage2014/interview](https://github.com/bage2014/interview)
+知识点归类github地址 [https://github.com/bage2014/interview](https://github.com/bage2014/interview)
+多线程代码demo实现github地址[https://github.com/bage2014/study/tree/master/study-java/src/main/java/com/bage/study/java/multhread](https://github.com/bage2014/study/tree/master/study-java/src/main/java/com/bage/study/java/multhread)
 
 ## 多线程理论基础 ##
 
@@ -68,4 +69,93 @@ CountDownLatch一般用于某个线程A等待若干个其他线程执行完任�
 - 分配使用了ThreadLocal又不再调用get(),set(),remove()方法，那么就会导致内存泄漏，因为这块内存一直存在。
 
 ### 线程池 ###
-参考链接 [https://www.cnblogs.com/dongguacai/p/6030187.html](https://www.cnblogs.com/dongguacai/p/6030187.html)
+参考链接 [https://www.cnblogs.com/dongguacai/p/6030187.html](https://www.cnblogs.com/dongguacai/p/6030187.html)、[https://www.cnblogs.com/szwh/p/7761171.html](https://www.cnblogs.com/szwh/p/7761171.html)、[https://blog.csdn.net/shahuhubao/article/details/80311992](https://blog.csdn.net/shahuhubao/article/details/80311992)、[https://justsee.iteye.com/blog/999189](https://justsee.iteye.com/blog/999189)
+
+#### 构造函数参数 ####
+
+		int corePoolSize = 2; // 核心线程池大小
+		int maximumPoolSize = 5; // 最大线程池大小
+		long keepAliveTime = 10; // 线程池中超过corePoolSize数目的空闲线程最大存活时间；可以allowCoreThreadTimeOut(true)使得核心线程有效时间
+		TimeUnit unit = TimeUnit.SECONDS; // keepAliveTime时间单位
+		BlockingQueue<Runnable> workQueue; // 阻塞任务队列
+		ThreadFactory threadFactory; // 新建线程工厂
+		RejectedExecutionHandler handler; //  当提交任务数超过maxmumPoolSize+workQueue之和时，任务会交给RejectedExecutionHandler来处理
+
+#### BlockingQueue阻塞队列 ####
+- ArrayBlockingQueue
+
+基于数组实现的一个阻塞队列，在创建ArrayBlockingQueue对象时必须制定容量大小。并且可以指定公平性与非公平性，默认情况下为非公平的，即不保证等待时间最长的队列最优先能够访问队列。
+
+- LinkedBlockingQueue
+
+基于链表实现的一个阻塞队列，在创建LinkedBlockingQueue对象时如果不指定容量大小，则默认大小为Integer.MAX_VALUE。
+
+- PriorityBlockingQueue[praɪˈɒrəti]
+
+以上2种队列都是先进先出队列，而PriorityBlockingQueue却不是，它会按照元素的优先级对元素进行排序，按照优先级顺序出队，每次出队的元素都是优先级最高的元素。注意，此阻塞队列为无界阻塞队列，即
+容量没有上限（通过源码就可以知道，它没有容器满的信号标志），前面2种都是有界队列。
+
+- DelayQueue
+
+基于PriorityQueue，一种延时阻塞队列，DelayQueue中的元素只有当其指定的延迟时间到了，才能够从队列中获取到该元素。DelayQueue也是一个无界队列，因此往队列中插入数据的操作（生产者）永远不会
+被阻塞，而只有获取数据的操作（消费者）才会被阻塞。
+
+#### RejectedExecutionHandler拒绝策略 ####
+超出线程范围和队列容量的任务的处理程序
+
+- ThreadPoolExecutor.AbortPolicy:丢弃任务并抛出(默认)RejectedExecutionException异常。 
+- ThreadPoolExecutor.DiscardPolicy：也是丢弃任务，但是不抛出异常。 
+- ThreadPoolExecutor.DiscardOldestPolicy：丢弃队列最前面的任务，然后重新尝试执行任务（重复此过程）
+- ThreadPoolExecutor.CallerRunsPolicy：由调用线程处理该任务
+		
+#### 提交过程 ####
+
+	1.	校验当前执行的线程数，是否小于 corePoolSize ，小于corePoolSize，则创建一个线程执行任务
+	2.	否则，尝试添加到阻塞队列中，如果能够添加，则提交过程结束
+	3.	否则，如果阻塞队列已经无法添加，则校验当前线程数是否达到maximumPoolSize个数，如果没有达到，创建新线程执行任务
+	4.	否则，如果已经达到maximumPoolSize个数，此时采取RejectedExecutionHandler拒绝策略进行拒绝操作
+
+- 源代码
+
+		public void execute(Runnable command) {
+        if (command == null)
+            throw new NullPointerException();
+        int c = ctl.get();
+        if (workerCountOf(c) < corePoolSize) {
+            if (addWorker(command, true))
+                return;
+            c = ctl.get();
+        }
+        if (isRunning(c) && workQueue.offer(command)) {
+            int recheck = ctl.get();
+            if (! isRunning(recheck) && remove(command))
+                reject(command);
+            else if (workerCountOf(recheck) == 0)
+                addWorker(null, false);
+        }
+        else if (!addWorker(command, false))
+            reject(command);
+    }
+
+#### excute vs submit ####
+- excute 无返回值，submit有返回值
+- submit里面还是调用了excute方法
+
+#### shutdown vs shutdownnow ####
+- shutDown() 
+	1. 线程池的状态编程SHUTDOWN
+	2. 不能再往线程池中添加任何任务，否则将会抛出RejectedExecutionException异常。
+	3. 此时线程池不会立刻退出，会把线程池中的任务都已经处理完成，才会退出。
+
+- shutdownNow() 
+	1. 线程池的状态立刻变成STOP状态，并通过调用Thread.interrupt()方法试图停止所有正在执行的线程，不再处理还在池队列中等待的任务
+	2. 它会返回那些未执行的任务。
+	3. ShutdownNow()并不代表线程池就一定立即就能退出，它可能必须要等待所有正在执行的任务都执行完成了才能退出。
+
+#### 线程池状态 ####
+Running、ShutDown、Stop、Tidying、Terminated
+
+### 线程池默认4个实现类 ###
+
+
+
