@@ -1,6 +1,7 @@
 # Java 基础 #
 
-github地址 [https://github.com/bage2014/interview](https://github.com/bage2014/interview)
+知识点汇总github地址 [https://github.com/bage2014/interview](https://github.com/bage2014/interview)
+java基础代码实现demo地址[https://github.com/bage2014/study/tree/master/study-java/src/main/java/com/bage/study/java](https://github.com/bage2014/study/tree/master/study-java/src/main/java/com/bage/study/java)
 
 ## 面向对象理论基础 ##
 
