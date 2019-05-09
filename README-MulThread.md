@@ -3,11 +3,70 @@
 知识点归类github地址 [https://github.com/bage2014/interview](https://github.com/bage2014/interview)
 多线程代码demo实现github地址[https://github.com/bage2014/study/tree/master/study-java/src/main/java/com/bage/study/java/multhread](https://github.com/bage2014/study/tree/master/study-java/src/main/java/com/bage/study/java/multhread)
 
+to be continue! 提纲已经就绪，会不断进行完善！！！
+
 ## 多线程理论基础 ##
 
 ### 什么是多线程 ###
 
 ### 线程和进程 ###
+
+### 线程安全 ###
+
+### 重入锁 ###
+
+### 死锁的四个条件 ###
+- 互斥
+- 请求与保持
+- 不剥夺
+- 循环等待
+
+### 预防死锁 ###
+
+### 检查死锁 ###
+- Jconsole查看死锁
+- Jstack查看死锁
+
+### volatile ###
+- JMM
+- 内存可见性
+- 防止指令重排序
+- 不能保证原子性
+
+### synchronized ###
+
+- 作用
+	1.	互斥访问
+	2.	内存可见性
+	3.	防止指令重排序
+
+- 用法
+	1.	修饰普通方法
+	2.	修饰静态方法
+	3.	修饰代码块
+
+- 注意点
+	1.	当一个线程在访问对象的 synchronized 方法，因为对象只有一把锁，其他线程无法获取该对象的锁，所以无法访问该对象的其他synchronized实例方法，但是其他线程还是可以访问该实例对象的其他非synchronized方法
+	2.	实现原理为，对象监视器，Monitor
+
+### volatile vs synchronized vs lock ###
+
+- 来源差异
+
+volatile、synchronized为Java关键字；
+lock是Java类
+
+- 代价开销
+
+volatile不是锁，代价最小；
+lock是一般基于AQS，相对比synchronized代价小；
+synchronized代价最大
+
+- 简单性
+
+volatile、synchronized为Java关键字，JVM全权帮忙维护，只要我们能正确使用，不需要我们太多关心维护；
+lock是Java类，有很多方法可以调用，灵活性最好，但是需要自己控制锁的获取、释放
+
 
 ### 进程间通信 ###
 - 管道pipe
@@ -32,6 +91,13 @@
 ## 多线程常用类 ##
 参考地址 [http://www.importnew.com/21889.html](http://www.importnew.com/21889.html)
 ### Thread ###
+
+
+### CAS ###
+- ABA问题
+- 
+### 原子操作类 ###
+
 
 ### CountDownLatch ###
 - 某线程需要等待多个线程执行完毕，再执行。
@@ -157,5 +223,6 @@ Running、ShutDown、Stop、Tidying、Terminated
 
 ### 线程池默认4个实现类 ###
 
+### AQS ###
 
-
+### 偏向锁、轻量级锁、重量级锁、自旋锁 ###
