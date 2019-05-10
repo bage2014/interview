@@ -163,7 +163,7 @@ java基础代码实现demo地址[https://github.com/bage2014/study/tree/master/s
 ### Java 8新特性 ###
 参考链接 [http://www.runoob.com/java/java8-new-features.html](http://www.runoob.com/java/java8-new-features.html)
 
-- Lambda 表达式 − Lambda允许把函数作为一个方法的参数（函数作为参数传递进方法中。
+- Lambda 表达式 − Lambda允许把函数作为一个方法的参数（函数作为参数传递进方法中，更详细的例子，请参考[被姜太公钓的鱼](https://blog.csdn.net/swh1314)的文章[https://blog.csdn.net/swh1314/article/details/82687052](https://blog.csdn.net/swh1314/article/details/82687052)。
 - 方法引用 − 方法引用提供了非常有用的语法，可以直接引用已有Java类或对象（实例）的方法或构造器。与lambda联合使用，方法引用可以使语言的构造更紧凑简洁，减少冗余代码。
 - 默认方法 − 默认方法就是一个在接口里面有了一个实现的方法。
 - 新工具 − 新的编译工具，如：Nashorn引擎 jjs、 类依赖分析器jdeps。
