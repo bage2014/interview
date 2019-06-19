@@ -16,7 +16,7 @@ Java面试知识点总结，会不断进行完善，1个月内将下面的列的
 ## [多线程](https://github.com/bage2014/interview/blob/master/README-MulThread.md) ##
 线程的理论知识；线程创建、执行、状态转化；AtomicInteger和AtomicXXX；CountdownLatch、CyclicBarrier；Semaphore、ThreadLocal；CAS 比较交换思路；锁机制，独占锁、非独占锁；AQS抽象队列同步器；线程池
 
-## [JVM](https://github.com/bage2014/interview/blob/master/README-jvm.md) ##
+## [JVM](https://github.com/bage2014/interview/blob/master/README-Jvm.md) ##
 JVM内存划分；JMM；对象存活判断；常用GC算法；GC触发原因；垃圾收集器；类加载过程
 
 ## Mybatis ##

@@ -172,6 +172,44 @@ java基础代码实现demo地址[https://github.com/bage2014/study/tree/master/s
 - Optional 类 − Optional 类已经成为 Java 8 类库的一部分，用来解决空指针异常。
 - Nashorn, JavaScript 引擎 − Java 8提供了一个新的Nashorn javascript引擎，它允许我们在JVM上运行特定的javascript应用。
 
+### 注解Annotation ###
+@interface 类型，包含 @Retention、@Target、@Document、@Inherited 四个元注解
+
+- @Retention
+ - @Retention(RetentionPolicy.SOURCE) == 仅仅存在于源码中，但是在class字节码文件中不包含
+ - @Retention(RetentionPolicy.CLASS) == 默认的保留策略，class字节码文件中存在，但运行时不存在
+ - @Retention(RetentionPolicy.RUNTIME) == 在class字节码文件中存在，在运行时也存在
+ 
+- @Target
+ - @Target(ElementType.TYPE) == 位于 接口、类、枚举、注解
+ - @Target(ElementType.FIELD) == 位于 字段、枚举的常量
+ - @Target(ElementType.METHOD) == 位于 方法上
+ - @Target(ElementType.PARAMETER)  == 位于 方法参数上
+ - @Target(ElementType.CONSTRUCTOR) == 位于 构造函数上
+ - @Target(ElementType.LOCAL_VARIABLE) == 位于 方法中的局部变量
+ - @Target(ElementType.ANNOTATION_TYPE) == 位于 注解上
+ - @Target(ElementType.PACKAGE) == 位于 包
+
+- @Documented
+ - 存在于javadoc中
+- @Inherited
+ - 可以被继承
+
+### 对象引用 ###
+对象引用分为四种类型，强引用、软引用、弱引用、虚引用，依次引用减弱
+
+- 强引用
+ - 引用存在，则不会回收（大部分引用都是强引用，`String str = "abc"`）
+- 软引用
+ - 内存溢出之前进行回收(`SoftReference<Object> sf = new SoftReference<Object>(obj)`)
+ - 可以作用于类似缓存的功能，在内存不够，需要进行垃圾回收时候被回收
+- 弱引用
+ - 第二次垃圾回收时回收（`WeakReference<Object> wf = new WeakReference<Object>(obj)`）
+ - 可以通过弱引用的isEnQueued方法返回对象是否被垃圾回收器标记，用于监控对象
+- 虚引用
+ - 每次垃圾回收时都会被回收（`PhantomReference<Object> pf = new PhantomReference<Object>(obj)`）
+ - 可用于检测对象是否已经从内存中删除
+
 
 
 ## Java集合 list、map、set ##
