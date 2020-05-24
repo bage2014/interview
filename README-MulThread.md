@@ -147,7 +147,20 @@ CountDownLatch一般用于某个线程A等待若干个其他线程执行完任�
 		ThreadFactory threadFactory; // 新建线程工厂
 		RejectedExecutionHandler handler; //  当提交任务数超过maxmumPoolSize+workQueue之和时，任务会交给RejectedExecutionHandler来处理
 
+| **参数**        | **说明**                                                     |
+| --------------- | ------------------------------------------------------------ |
+| corePoolSize    | 核心线程池大小                                               |
+| maximumPoolSize | 最大线程池大小                                               |
+| keepAliveTime   | 线程池中超过corePoolSize时空闲线程的最大存活时间             |
+| unit            | keepAliveTime的时间单位                                      |
+| workQueue       | 阻塞任务队列                                                 |
+| threadFactory   | 线程工厂                                                     |
+| handler         | 当提交任务数超过（maximumPoolSize+workQueue）时，任务会交给handler来处理 |
+
+
+
 #### BlockingQueue阻塞队列 ####
+
 - ArrayBlockingQueue
 
 基于数组实现的一个阻塞队列，在创建ArrayBlockingQueue对象时必须制定容量大小。并且可以指定公平性与非公平性，默认情况下为非公平的，即不保证等待时间最长的队列最优先能够访问队列。
