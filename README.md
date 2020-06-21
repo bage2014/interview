@@ -182,7 +182,7 @@ request、response；
 ## redis ##
 集群；
 
-分布式锁；
+[分布式锁](https://github.com/bage2014/study/blob/master/study-redis/README-distribute-lock.md)
 
 缓存组件对比；
 
