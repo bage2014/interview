@@ -134,7 +134,7 @@ java基础代码实现demo地址[https://github.com/bage2014/study/tree/master/s
 - 当自定义对象作为集合类的key时，必须重写此两个方法
 
 ### Java序列化和反序列化 ###
-参考链接 [https://blog.csdn.net/onceing/article/details/80969369](https://blog.csdn.net/onceing/article/details/80969369)
+参考链接 [https://blog.csdn.net/onceing/article/details/80969369](https://blog.csdn.net/onceing/article/details/80969369) 、[https://developer.ibm.com/zh/articles/j-lo-serial/]、[https://cloud.tencent.com/developer/article/1341385]
 
 - 基本概念
 	1.	Serialization-序列化：可以看做是将一个对象转化为二进制流的过程
@@ -159,6 +159,27 @@ java基础代码实现demo地址[https://github.com/bage2014/study/tree/master/s
 	2.	递归地输出类的超类描述直到不再有超类。
 	3.	类元数据完了以后，开始从最顶层的超类开始输出对象实例的实际数据值。
 	4.	从上至下递归输出实例的数据
+
+
+
+- 序列化 ID 的问题
+- 静态变量序列化
+- 父类的序列化与 Transient 关键字
+- 对敏感字段加密
+- 序列化存储规则
+
+怎么实现Java的序列化 
+
+为什么实现了java.io.Serializable接口才能被序列化 
+
+transient的作用是什么 
+
+怎么自定义序列化策略 
+
+自定义的序列化策略是如何被调用的 
+
+ArrayList对序列化的实现有什么好处
+
 
 ### Java 8新特性 ###
 参考链接 [http://www.runoob.com/java/java8-new-features.html](http://www.runoob.com/java/java8-new-features.html)
